@@ -1,0 +1,99 @@
+<%- include('headeradmin'); -%>
+
+
+
+  <div class="container">
+<br/>
+
+<a class="waves-effect waves-light btn" href="/admin/series/create"><i class="material-icons left">add</i>Add series</a>
+<br/>
+<br/>
+
+
+  <div class="row">
+
+<form action="">
+          <div class="input-field col s12 m12 l8">
+          <input id="search" type="text" class="validate" name="search">
+          <label for="search">Search All series </label>
+        </div>
+
+        <input type="submit" 
+       style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+       tabindex="-1" />
+
+        </form>
+          
+</div>
+
+<% if (locals.data) { %>
+  <div class="row">
+
+      <% data.forEach((item)=>{%>
+      
+    <div class="col s6 m6 l3">
+      <div class="card carda">
+        <div class="card-image">
+          <img src="<%=item.thumb%>" style="opacity: 0.8;" > 
+          <span class="card-title" style="font-family: -webkit-pictograph;"><%=item.name %></span>
+        </div>
+
+        <div class="card-action">
+          <a href="/admin/serie/edit?id=<%=item.id %>">Edit </a>
+          <a href="/admin/serie/delete?id=<%=item.id %>">Delete </a>
+        </div>
+      </div>
+    </div>
+            
+        <%});%>
+  </div>
+
+<% } %>
+
+
+
+
+
+
+
+<br/>
+<br/>
+
+
+<% if (locals.pages) { %>
+
+  <ul class="pagination">
+
+<% for(var i=1; i <= pages; i++) {  %>
+
+
+<% if(i.toString() == currpage.toString()){ %>
+
+<% console.log('hi'+i); var classs = 'waves-effect active '; %>
+<% }else{ %>
+<% var classs = 'waves-effect'; %>
+<% } %>
+
+
+    <li class="<%=classs %>"><a href="/admin/series?page=<%=i %>"><%=i %></a></li>
+
+<% } %>
+
+  </ul>
+
+
+<% } %>
+
+
+
+
+
+
+
+
+
+            
+  </div>
+
+
+<%- include('footer'); -%>

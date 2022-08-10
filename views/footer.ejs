@@ -1,0 +1,178 @@
+  <!-- Compiled and minified JavaScript -->
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+
+
+<script>
+setTimeout(function(){            document.querySelector(".progress").style.display = "none";},3000);
+</script>
+<script>
+        //after window is loaded completely
+        window.onload = function() {
+            //hide the preloader
+            document.querySelector(".progress").style.display = "none";
+        }
+
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.modal').modal();
+    });
+
+    jQuery(document).ready(function($) {
+        $(".clickable-row").dblclick(function() {
+            window.location = $(this).data("href");
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+
+        $('.datepicker').datepicker({
+
+        });
+
+        $('.dropdown-trigger').dropdown();
+
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.sidenav').sidenav();
+        $('.collapsible').collapsible();
+        $('.collapsible.expandable').collapsible({
+            accordion: false
+        });
+
+    });
+
+    $(document).ready(function() {
+        $('.tooltipped').tooltip();
+    });
+
+    $(document).ready(function() {
+        $('.tabs').tabs();
+    });
+
+
+
+    $(document).ready(function() {
+        $('.fixed-action-btn').floatingActionButton();
+    });
+
+
+
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+        
+          // Or with jQuery
+
+  $(document).ready(function(){
+    $('.materialboxed').materialbox();
+  });
+
+
+//checkbox handeler
+$("input[type='checkbox']").on('change', function() {
+  if ($(this).is(':checked')) {
+    $(this).attr('value', 'true');
+
+    if((document.querySelector('form.white').innerHTML).includes('id="'+$(this).attr('name')+'"')){
+    console.log('found');
+    $( "#"+$(this).attr('name') ).remove();
+
+    }
+    
+  } else {
+    $(this).attr('value', 'false');
+
+    $( "form.white" ).append( '<input id="'+$(this).attr('name')+'" type="text"  name="'+$(this).attr('name')+'" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" value="false" />' );
+
+
+  }
+  });
+
+
+  $("input[type='checkbox']").each( function () {
+
+  if($(this).attr('value') == 'true'){
+$(this).prop('checked', true);
+  $(this).attr('value', 'true');
+
+  }else{
+$(this).prop('checked', false);
+    $(this).attr('value', 'false');
+
+    $( "form.white" ).append( '<input id="'+$(this).attr('name')+'" type="text"  name="'+$(this).attr('name')+'" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" value="false" />' );
+    
+  }
+
+  });
+
+  //checkbox handeler
+
+
+
+  //select handeler
+  $("select").each( function () {
+
+  if($(this).data('oldsr')){
+   $(this).val($(this).data('oldsr'));
+  }
+
+  });
+    //select handeler
+
+
+
+  //date formate
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+ 
+   $("input[type='date']").each( function () {
+  if($(this).attr('value')){
+  $(this).attr('value', formatDate($(this).attr('value')));
+  }
+
+  });
+
+  //date formate
+
+</script>
+
+
+
+          
+<footer class="page-footer docs-footer">
+<div class="grey-text container" style="">
+
+    <br> Copyright &copy; <%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(new Date()) %> Flixy.<br><br>Developed By ❤️ with Flixy Studios
+
+</div>
+</footer>
+
+
+
+</main>
+
+</body>
+</html>

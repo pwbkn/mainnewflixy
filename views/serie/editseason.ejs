@@ -1,0 +1,50 @@
+<%- include('../headeradmin'); -%>
+
+<% if (locals.olddata) { %>
+
+
+  <div class="container" id='mainContainer'>
+
+
+    <form class="white" style="padding: 20px;margin: 10px auto;max-width: 100%;margin-bottom:40px;" action="/admin/seasons/edit?id=<%= olddata.id  %>" method="POST" >
+        <h4 class="grey-text center">Edit Season Form</h4>
+
+
+
+
+
+
+  
+
+
+               <div class="input-field col s12 m12 l12">
+              <input id="name" type="text"   name="name" value="<%= olddata.name  %>" >
+              <label for="name">name</label>
+              </div>               
+
+
+
+      <p>
+      <label>
+        <input type="checkbox" name="web_only" value="<%= olddata.web_only  %>" />
+        <span>Website only</span>
+      </label>
+    </p>
+
+
+      <p>
+      <label>
+        <input type="checkbox" name="app_only"  value="<%= olddata.app_only  %>"/>
+        <span>App only</span>
+      </label>
+    </p>
+
+            <input type="submit" name="submit" value="submit" class="btn center white-text brand-btn" >
+
+           </form>
+  </div>
+
+<% } %>
+
+
+<%- include('../footer'); -%>

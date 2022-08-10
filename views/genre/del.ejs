@@ -1,0 +1,31 @@
+<%- include('../headeradmin'); -%>
+
+<% if (locals.olddata) { %>
+
+
+
+
+  <div class="container" id='mainContainer'>
+
+
+    <form class="white" style="padding: 20px;margin: 10px auto;max-width: 100%;margin-bottom:40px;" action="/admin/genre/delete/<%= olddata.id  %>" method="GET" >
+        <h5 class=" center">Are You Sure You Want To Delete <%= olddata.name  %> Genre </h5>
+
+        <br/>
+
+        All the movies,series and channels which have this will no <br /> longer have this genre instaed they will get a null<br /> value.
+
+<center>
+
+            <input type="submit" name="submit" value="submit" class="btn center white-text brand-btn red" style="background:red!important;">
+
+            <a href="/admin/genres" class="btn center white-text brand-btn " >Go Back </a>
+</center>
+
+</form>
+</div>
+
+<% } %>
+
+
+<%- include('../footer'); -%>

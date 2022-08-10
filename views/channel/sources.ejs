@@ -1,0 +1,65 @@
+<%- include('../headeradmin'); -%>
+
+
+<% if (locals.olddata) { %>
+
+  <div class="container">
+<br/>
+
+<a class="waves-effect waves-light btn" href="/admin/channel/addsrc?id=<%= olddata.id  %>"><i class="material-icons left">add</i>Add Sources</a>
+<br/>
+<br/>
+
+<h5>Sources FOR <%= olddata.name  %></h5>
+      <table>
+        <thead>
+          <tr>
+              <th>Action</th>
+              <th>URL</th>
+              <th>Name</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+  
+
+   
+
+      
+<% if (locals.data) { %>
+
+      <% data.forEach((item)=>{%>
+
+            <tr>
+            <td>      
+            
+             <a  class="waves-effect waves-light btn" href="/admin/channel/editsrc?id=<%=item.id %>">Edit </a>
+             
+          <a  class="waves-effect waves-light btn" href="/admin/channel/delsrc?id=<%=item.id %>">Delete </a></td>
+
+            <td><a href="<%=item.url %>"> <%=item.url.substr(0,70) %></a></td>
+            <td><%=item.name %></td>
+          </tr>
+            
+        <%});%>
+
+<% } %>
+
+
+ 
+        </tbody>
+      </table>
+
+
+
+
+<br/>
+<br/>
+
+          
+  </div>
+
+<% }%>
+
+<%- include('../footer'); -%>

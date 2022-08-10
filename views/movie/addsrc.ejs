@@ -1,0 +1,114 @@
+<%- include('../headeradmin'); -%>
+
+<% if (locals.data) { %>
+
+
+  <div class="container" id='mainContainer'>
+
+
+    <form class="white" style="padding: 20px;margin: 10px auto;max-width: 100%;margin-bottom:40px;" action="/admin/movie/addsrc?id=<%= data.id  %>" method="POST" >
+        <h4 class="grey-text center">Source Form</h4>
+
+
+
+
+
+
+  
+
+
+               <div class="input-field col s12 m12 l12">
+              <input id="url" type="text"   name="url" >
+              <label for="url">url</label>
+              </div>               
+
+      <!--         <div class="input-field col s12 m12 l12">
+              <input id="name" type="text"   name="name" >
+              <label for="name">name</label>
+              </div>     -->
+
+              
+
+  <div class="input-field inline col s12">
+  Quality:
+    <select name="name">
+      <option value="HD" selected>hd</option>
+      <option value="Full HD">full hd</option>
+      <option value="Ultra HD">ultra hd</option>
+    </select>
+  </div>
+
+
+    <div class="input-field inline col s12">
+  :
+    <select name="quality">
+      <option value="720 px" selected>720</option>
+      <option value="480 px">480</option>
+      <option value="1080 px">1080</option>
+      <option value="4k">4k</option>
+      <option value="720 px IMAX">720 imax</option>
+      <option value="1080 px IMAX">1080 imax</option>
+    </select>
+  </div>
+
+
+      <div class="input-field inline col s12">
+  Type:
+    <select name="type">
+      <option value="play" selected>Play</option>
+      <option value="download">Download</option>
+      <option value="both">Play & Download</option>
+    </select>
+  </div>
+
+              
+                      <div class="input-field col s12 m12 l12">
+              <input id="drmkey" type="text"   name="drmkey"  >
+              <label for="drmkey">drmkey</label>
+              </div>   
+
+
+  <div class="input-field inline col s12">
+  Type OF Source:
+    <select name="ext">
+      <option value="mkv" selected>mkv</option>
+      <option value="mp4">mp4</option>
+      <option value="mpd">mpd</option>
+      <option value="m3u8">m3u8</option>
+
+      <option value="supermpd">supermpd</option>
+      <option value="superm3u8">superm3u8</option>
+      <option value="embed">embed</option>
+    </select>
+  </div>
+
+
+
+
+
+
+
+      <p>
+      <label>
+        <input type="checkbox" name="web_only" />
+        <span>Website only</span>
+      </label>
+    </p>
+
+
+      <p>
+      <label>
+        <input type="checkbox" name="app_only" />
+        <span>App only</span>
+      </label>
+    </p>
+
+            <input type="submit" name="submit" value="submit" class="btn center white-text brand-btn" >
+
+           </form>
+  </div>
+
+<% } %>
+
+
+<%- include('../footer'); -%>

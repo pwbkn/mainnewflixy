@@ -1,0 +1,94 @@
+<%- include('../headeradmin'); -%>
+
+
+<% if (locals.olddata) { %>
+
+  <div class="container">
+<br/>
+
+<a class="waves-effect waves-light btn" href="/admin/episodes/create?id=<%= olddata.id  %>"><i class="material-icons left">add</i>Add Episodes</a>
+<br/>
+<br/>
+
+
+
+
+<h5>Episodes FOR <%= olddata.name  %></h5>
+      <table>
+        <thead>
+          <tr>
+              <th>Action</th>
+              <th>Name</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+  
+
+   
+
+      
+<% if (locals.data) { %>
+
+      <% data.forEach((item)=>{%>
+
+            <tr>
+            <td>      
+            
+             <a  class="waves-effect waves-light btn" href="/admin/episodes/edit?id=<%=item.id %>">Edit </a>
+             
+          <a  class="waves-effect waves-light btn" href="/admin/episodes/delete?id=<%=item.id %>">Delete </a>
+
+
+                    <a  class="waves-effect waves-light btn" href="/admin/episode/sources?id=<%=item.id %>">Sources</a></td>
+
+            <td><%=item.name %></td>
+          </tr>
+            
+        <%});%>
+
+<% } %>
+
+
+ 
+        </tbody>
+      </table>
+
+
+
+
+   <form class="white" style="padding: 20px;margin: 10px auto;max-width: 100%;margin-bottom:40px;" action="/admin/season/createbulkepisode/<%= olddata.id  %>" method="GET" >
+        <h5 class=" center">Add Bulk Episodes: </h5>
+        <br/>
+
+<center>
+            <div class="input-field">
+              <input id="episode_no_start" type="number"  name="episode_no_start" value=1  >
+              <label for="episode_no_start">Starting point</label>
+              </div>      
+
+
+            <div class="input-field">
+              <input id="episode_no" type="number"  name="episode_no" >
+              <label for="episode_no">No of Episodes</label>
+              </div>       
+
+            <input type="submit" name="submit" value="submit" class="btn center white-text brand-btn red" style="background:red!important;">
+</center>
+
+</form>
+
+<br />
+            <a href="/admin/seasons/deleteallep/<%= olddata.id  %>" class="btn center white-text brand-btn yellow" >Delete all Episodes of this <%= olddata.name  %>"</a>
+
+
+<br/>
+<br/>
+
+          
+  </div>
+
+<% }%>
+
+<%- include('../footer'); -%>

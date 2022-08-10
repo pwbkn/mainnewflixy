@@ -1,16 +1,77 @@
-<h1>Login</h1>
-<% if (messages.error) { %>
-  <%= messages.error %>
+
+
+<%- include('header'); -%>
+
+<style>
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
+
+
+<main class="form-signin">
+
+<% if (locals.error) { %>
+<div class="alert alert-danger" role="alert">
+<%= error %>
+</div>
 <% } %>
-<form action="/login" method="POST">
-  <div>
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required>
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required>
-  </div>
-  <button type="submit">Login</button>
-</form>
-<a href="/register">Register</a>
+
+  <form action="/login" method="POST">
+    <img class="mb-4" src="/logo.png" alt="" width="200" height="80">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating" bis_skin_checked="1">
+      <input type="text" class="form-control" id="floatingInput" placeholder="dev"  id="username" name="username" required>
+      <label for="floatingInput">Username</label>
+    </div>
+    <div class="form-floating" bis_skin_checked="1">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password"  id="password" name="password" required>
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">© 2017–2021 Made By Dev Goyal</p>
+  </form>
+</main>
+
+<!-- your HTML code --> 
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<%- include('../headeradmin'); -%>
+
+
+
+  <div class="container" id='mainContainer'>
+
+
+    <form class="white" style="padding: 20px;margin: 10px auto;max-width: 100%;margin-bottom:40px;" action="" method="POST" >
+        <h4 class="grey-text center">Movie Form</h4>
+
+
+
+  <div class="row">
+
+          <div class="input-field col s12 m12 l8">
+          <input id="search" type="text" class="validate" >
+          <label for="search">Search in TMDB</label>
+        </div>
+            
+    <div class="input-field col s12 m12 l4">
+  <!-- Dropdown Trigger -->
+  <a class='dropdown-trigger btn brand' href='#' data-target='dropdown1' onclick="tmdbImport()">Search!</a>
+
+  <!-- Dropdown Structure -->
+  <ul id='dropdown1' class='dropdown-content mydrop' style="">
+         <li><a href="#!">Results:</a></li>
+
+  </ul>
+        </div>
+
+        
+</div>
+
+
+
+  <div class="row">
+
+
+    <div class="col s12 m12 l4">
+        <img class="materialboxed" id="priviewThumb" width="100%" src="s">
+        </div>
+
+
+              <div class="input-field col s12 m12 l4">
+              <input id="name"  name="name" type="text" >
+              <label for="name">name</label>
+              </div>
+
+               <div class="input-field col s12 m12 l4">
+              <input id="popularity" type="text"   name="popularity" >
+              <label for="popularity">popularity</label>
+              </div>           
+   </div>           
+
+   
+
+  <div class="row">
+
+               <div class="input-field col s12 m12 l4">
+              <input id="vote" type="text"   name="vote" >
+              <label for="vote">vote</label>
+              </div>               
+
+               <div class="input-field col s12 m12 l4">
+              <input id="tmdb" type="text"   name="tmdb" >
+              <label for="tmdb">tmdb</label>
+              </div>     
+
+              
+            
+               <div class="input-field col s12 m12 l4">
+              <input id="thumb" type="text"   name="thumb"  onchange="updateImgs()" oninput="updateImgs()" >
+              <label for="thumb">Thumbnail</label>
+              </div>   
+</div> 
+
+  <div class="row">
+
+             <div class="input-field col s12 m12 l6">
+              <input id="trailer" type="text"   name="trailer" >
+              <label for="trailer">trailer</label>
+              </div>                   
+
+
+                 <div class="input-field col s12 m12 l6">
+              <input id="poster" type="text"   name="poster"
+               onchange="updateImgs()" oninput="updateImgs()"  >
+              <label for="poster">Poster Image</label>
+              </div>                           
+     </div>    
+
+      <div class="row">
+
+             <div class="input-field col s12 m12 l12">
+              <input id="des" type="text"   name="description" >
+              <label for="des">Description</label>
+              </div>                   
+     </div>    
+
+     
+      <div class="row">
+
+             <div class="input-field col s12 m12 l4">
+              <input id="genre" type="text"  name="genre" >
+              <label for="genre">Genre</label>
+              </div>       
+
+        <input id="genrename" type="text"  name="genrename" 
+       style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+       tabindex="-1" />
+
+            <div class="input-field col s12 m12 l4">
+              <input id="tagline" type="text"  name="tagline" >
+              <label for="tagline">tagline</label>
+              </div>                   
+
+             <div class="input-field col s12 m12 l4">
+              <input id="runtime" type="text"  name="runtime" >
+              <label for="runtime">runtime(in minutes)</label>
+              </div>                   
+     </div>    
+
+
+           <div class="input-field">
+              <input id="relasedate" type="date"  name="relasedate" >
+              <label for="relasedate">relasedate</label>
+              </div>             
+              
+              
+           <div class="input-field">
+              <input id="subtitle" type="text"  name="subtitle" >
+              <label for="subtitle">subtitle</label>
+              </div>       
+
+
+      <p>
+      <label>
+        <input type="checkbox" name="web_only" />
+        <span>Website only</span>
+      </label>
+    </p>
+
+
+      <p>
+      <label>
+        <input type="checkbox" name="app_only" />
+        <span>App only</span>
+      </label>
+    </p>
+    
+
+
+            <input type="submit" name="submit" value="submit" class="btn center white-text brand-btn" >
+
+           </form>
+  </div>
+
+  <script>
+  var searchedmovies = [];
+
+  function tmdbImport(){
+  console.log('ok');
+  var name = document.getElementById('search').value;
+
+  var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    var html = '';
+    const obj = JSON.parse(xhttp.responseText);
+
+     searchedmovies = obj;
+
+    obj.forEach((element, index) => {
+    html = html + '<li><a href="#!" onclick="setForm('+index+')"><img src="'+element['poster']+'" style="height:100px;width:70px">'+element['name']+'</a></li><li class="divider" tabindex="-1"></li>';
+
+
+    console.log(element);
+    });
+    
+       // Typical action to be performed when the document is ready:
+       document.getElementById("dropdown1").innerHTML = html;
+    }
+};
+xhttp.open("GET", "/tmdb/searchmovie?name="+encodeURIComponent(name)
+, true);
+xhttp.send();
+
+
+  }
+
+
+ function setForm(id){
+ 
+ var element = searchedmovies[id];
+ console.log(element);
+ const entries = Object.entries(element);
+
+ entries.forEach((element,index)=>{
+ document.getElementById(element[0]).value=element[1];
+
+ if(element[0] === 'thumb'){
+  document.getElementById('priviewThumb').src= element[1];
+ }
+
+
+  if(element[0] === 'poster'){
+  document.body.style.backgroundImage = "url('"+element[1]+"')";
+ }
+
+ });
+ 
+ }
+
+ function setPoster(url){
+   document.body.style.backgroundImage = "url('"+url+"')";
+}
+
+function setThumb(url){
+  document.getElementById('priviewThumb').src= url;
+}
+
+function updateImgs(){
+setPoster(document.getElementById('poster').value);
+setThumb(document.getElementById('thumb').value);
+}
+  </script>
+
+
+<%- include('../footer'); -%>

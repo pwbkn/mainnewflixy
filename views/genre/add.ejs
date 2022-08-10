@@ -1,0 +1,44 @@
+<%- include('../headeradmin'); -%>
+
+
+
+  <div class="container" id='mainContainer'>
+
+
+    <form class="white" style="padding: 20px;margin: 10px auto;max-width: 100%;margin-bottom:40px;" action="" method="POST" >
+        <h4 class="grey-text center">genre Form</h4>
+
+
+
+
+              <div class="input-field">
+              <input id="name"  name="name" type="text" >
+              <label for="name">Name:</label>
+              </div>
+
+  <div class="input-field inline col s12">
+  Type OF Genre:
+    <select name="type">
+      <option value="movie" selected>Movie</option>
+      <option value="serie">Serie</option>
+      <option value="channel">Channel</option>
+    </select>
+  </div>
+
+  
+
+    
+    
+    <br />
+
+
+            <input type="submit" name="submit" value="submit" class="btn center white-text brand-btn" >
+
+           </form>
+  </div>
+
+
+
+
+
+<%- include('../footer'); -%>

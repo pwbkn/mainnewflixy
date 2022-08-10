@@ -1,0 +1,114 @@
+<%- include('../headeradmin'); -%>
+
+
+<% if (locals.olddata) { %>
+
+  <div class="container" id='mainContainer'>
+
+<br/>
+<a class="waves-effect waves-light btn" href="/admin/channel/sources?id=<%= olddata.id  %>"><i class="material-icons left">add</i>Sources For This Channel</a>
+
+
+    <form class="white" style="padding: 20px;margin: 10px auto;max-width: 100%;margin-bottom:40px;" action="/admin/channel/edit/<%= olddata.id  %>" method="POST" >
+        <h4 class="grey-text center">channel Form</h4>
+
+
+
+  <div class="row">
+
+
+    <div class="col s12 m12 l4">
+        <img class="materialboxed" id="priviewThumb" width="100%" src="s">
+        </div>
+
+
+              <div class="input-field col s12 m12 l4">
+              <input id="name"  name="name" type="text" value="<%= olddata.name  %>">
+              <label for="name">name</label>
+              </div>
+
+            
+               <div class="input-field col s12 m12 l4">
+              <input id="thumb" type="text"   name="thumb" 
+              value="<%= olddata.thumb  %>" onchange="updateImgs()" oninput="updateImgs()" >
+              <label for="thumb">Thumbnail</label>
+              </div>   
+
+   </div>           
+
+   
+
+  <div class="row">
+                 <div class="input-field col s12 m12 l4">
+              <input id="poster" type="text"   name="poster" value="<%= olddata.poster  %>"
+               onchange="updateImgs()" oninput="updateImgs()"  >
+              <label for="poster">Poster Image</label>
+              </div>        
+      </div> 
+
+
+      <div class="row">
+
+             <div class="input-field col s12 m12 l12">
+              <input id="des" type="text"   name="description"  value="<%= olddata.description  %>">
+              <label for="des">Description</label>
+              </div>                   
+     </div>    
+
+     
+      <div class="row">
+
+             <div class="input-field col s12 m12 l4">
+              <input id="genre" type="text"  name="genre"  value="<%= olddata.genre  %>">
+              <label for="genre">Genre</label>
+              </div>       
+
+
+     </div>    
+
+      <p>
+      <label>
+        <input type="checkbox" name="web_only" value="<%= olddata.web_only  %>"/>
+        <span>Website only</span>
+      </label>
+    </p>
+
+
+      <p>
+      <label>
+        <input type="checkbox" name="app_only" value="<%= olddata.app_only  %>" />
+        <span>App only</span>
+      </label>
+    </p>
+    
+
+
+            <input type="submit" name="submit" value="submit" class="btn center white-text brand-btn" >
+
+           </form>
+  </div>
+
+  <script>
+
+
+ function setPoster(url){
+   document.body.style.backgroundImage = "url('"+url+"')";
+}
+
+function setThumb(url){
+  document.getElementById('priviewThumb').src= url;
+}
+
+function updateImgs(){
+setPoster(document.getElementById('poster').value);
+setThumb(document.getElementById('thumb').value);
+}
+
+
+updateImgs();
+  </script>
+
+
+<% } %>
+
+<%- include('../footer'); -%>
