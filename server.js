@@ -36,6 +36,6 @@ const router = require('./router');
 app.use(router)
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT ?process.env.PORT:3000, () => {
   console.log("app is running");
 });
